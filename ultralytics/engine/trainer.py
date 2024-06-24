@@ -47,8 +47,8 @@ from ultralytics.utils.torch_utils import (
     init_seeds,
     one_cycle,
     select_device,
-    strip_optimizer,
-    torch_distributed_zero_first,
+    torch_distributed_zero_first
+    # strip_optimizer
 )
 
 
@@ -640,7 +640,7 @@ class BaseTrainer:
         """Performs final evaluation and validation for object detection YOLO model."""
         for f in self.last, self.best:
             if f.exists():
-                strip_optimizer(f)  # strip optimizers
+                # strip_optimizer(f)  # strip optimizers
                 if f is self.best:
                     LOGGER.info(f"\nValidating {f}...")
                     self.validator.args.plots = self.args.plots

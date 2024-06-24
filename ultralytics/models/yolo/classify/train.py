@@ -8,7 +8,7 @@ from ultralytics.models import yolo
 from ultralytics.nn.tasks import ClassificationModel, attempt_load_one_weight
 from ultralytics.utils import DEFAULT_CFG, LOGGER, RANK, colorstr
 from ultralytics.utils.plotting import plot_images, plot_results
-from ultralytics.utils.torch_utils import is_parallel, strip_optimizer, torch_distributed_zero_first
+from ultralytics.utils.torch_utils import is_parallel, torch_distributed_zero_first # strip_optimizer
 
 
 class ClassificationTrainer(BaseTrainer):
@@ -138,7 +138,7 @@ class ClassificationTrainer(BaseTrainer):
         """Evaluate trained model and save validation results."""
         for f in self.last, self.best:
             if f.exists():
-                strip_optimizer(f)  # strip optimizers
+                # strip_optimizer(f)  # strip optimizers
                 if f is self.best:
                     LOGGER.info(f"\nValidating {f}...")
                     self.validator.args.data = self.args.data
